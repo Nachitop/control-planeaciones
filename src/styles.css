@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+/* .div-sombreado{
+    margin-top: 50px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #346EA8;
+    height: 100%;
+    box-shadow: 0 2px 4px #FFFFCD ,0 3px 10px 0 #FFFFCD ;
+} */
+.alinear-texto{
+    text-align: center;
+}
+
+.color-texto{
+    color:#346EA8;
+
+}
+.error{
+    color: red;
+}
+.exito{
+    color: green;
+}
+
+.margin{
+    margin-top:20px; 
+    margin-bottom: 20px;
+}
+
+.div-sombreado{
+    border-style: solid;
+    border-width: 5px;
+    border-color: #346EA8;
+    padding: 10px 10px 10px 10px;
+    margin: 5px 5px 5px 5px;
+    box-shadow: 0 4px 8px rgb(0,0,0.2),0 8px 20px 0 rgb(0,0,0.19);
+}
+.div-sombreado-2{
+    border-style: solid;
+    border-width: 3px;
+    border-color: #D4C1FF ;
+    padding: 5px 5px 5px 5px;
+    margin: 2px 2px 2px 2px;
+    box-shadow: 0 2px 4px rgb(78, 78, 5) ,0 4px 10px 0 rgb(78, 78, 5);
+}
+
+.div-sombreado-3{
+    border-style: solid;
+    border-width: 4px;
+    border-color: #A5FFF5 ;
+    padding: 5px 5px 5px 5px;
+    margin: 2px 2px 2px 2px;
+    box-shadow: 0 2px 4px rgb(78, 78, 5) ,0 4px 10px 0 rgb(78, 78, 5);
+}
+
+.contorno{
+    border-style: solid !important;
+     border-width: 1px !important;
+    border-color: black !important;
+}

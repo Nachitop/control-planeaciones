@@ -1,0 +1,164 @@
+
+<div class="row">
+    <div class="col-md-6">
+      <app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar"
+        (ocultarToast)="ocultarToast($event);"></app-toast>
+    </div>
+  </div>
+<div class="container" *ngIf="dia==5 && habilitar && tipoUsuario.tipo==='Alumno'; else noMostrar">
+  <br> 
+
+      <div class="row justify-content-center align-items-center contorno">
+          <h5>Grupo: {{horario.grupo.grupo}}-{{horario.grupo.carrera.nombre}}</h5>
+        </div>
+
+        <div class="row ">
+            <table class="table table-bordered" style="overflow:auto; width: 100%;">
+                <thead>
+                  <tr style="text-align:center;">
+                   
+                    <th>Materias</th>
+                    <th>Profesor(a)</th>
+                    <th>L</th>
+                    <th>M</th>
+                    <th>MI</th>
+                    <th>J</th>
+                    <th>V</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="text-align:center;" *ngFor="let h of horario.horario">
+                    <td>{{h.materia.nombre}}</td>
+                    <td>{{h.profesor.usuario.nombre}} {{h.profesor.usuario.apellido}}</td>
+                    <td> <div class="form-check"><input class="form-check-input" type="checkbox" value="L" (change)="asistencia($event,h.materia._id,h.profesor._id);"></div></td>
+                    <td> <div class="form-check"><input class="form-check-input" type="checkbox" value="M" (change)="asistencia($event,h.materia._id,h.profesor._id);"></div></td>
+                    <td> <div class="form-check"><input class="form-check-input" type="checkbox" value="MI" (change)="asistencia($event,h.materia._id,h.profesor._id);" ></div></td>
+                    <td> <div class="form-check"><input class="form-check-input" type="checkbox" value="J" (change)="asistencia($event,h.materia._id,h.profesor._id);"></div></td>
+                    <td><div class="form-check"><input class="form-check-input" type="checkbox" value="V" (change)="asistencia($event,h.materia._id,h.profesor._id);"></div></td>
+                    <td ><div *ngFor="let a of avance.programatico"><label *ngIf="a.materia._id===h.materia._id && a.profesor._id===h.profesor._id">{{a.dias.length}}</label></div></td>
+                  </tr>
+                </tbody>
+        
+              </table>
+        </div>
+        <br>
+
+        <div class="row justify-content-center align-items-center contorno">
+            <h5>CONTROL DE AVANCES PROGRAMÁTICOS</h5>
+          </div>
+          <div class="row">
+              <table class="table table-bordered">
+                <thead >
+                  <tr style="text-align:center;">
+                    <th>Materias</th>
+                    <th >Temas</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="text-align:center;" *ngFor="let h of horario.horario">
+                    <td style="width:15%">{{h.materia.nombre}}</td>
+                    <td >
+                      <div *ngFor="let av of avance.programatico">
+                        <ul *ngIf="av.materia._id===h.materia._id">
+                          <div class="row">
+                              <li *ngFor="let t of av.temas" class="col-md-4 col-xs-12 col-sm-12">{{t}}</li>
+                          </div>
+                            
+                        </ul>
+                      </div>
+                    </td>
+                    <td style="width:5%"><button type="button"  class="btn btn-info" (click)="abrirModal(content,h.materia._id);"><i class="material-icons">add</i></button></td>
+                  </tr>
+                </tbody>
+                </table>
+          </div>
+          <br>
+          <br>
+          <button type="button" class="btn btn-primary btn-block" (click)="enviar();">Enviar</button> 
+     
+     
+      </div>
+
+
+      <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title">Contenidos</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="row ">
+             
+              <div class="col-md-4 ">
+                   <div class="row align-items-center justify-content-center">
+                     <h5>Unidades</h5>
+                   </div>
+                   <div class="contenido">
+                      <div class="row margen"  *ngFor="let u of pe.contenidos">
+                          <button  type="button" class="btn btn-info btn-block" (click)="obtenerTemas(u.unidad);">{{u.unidad}}</button>
+                      </div>
+                       
+                  </div>
+                
+                   
+              </div>
+              <div class="col-md-4">
+                  <div class="row align-items-center justify-content-center">
+                      <h5>Agregar tema</h5>
+                    </div>
+                 <div class="contenido">
+                   <div class="row margen" *ngFor="let tema of temasUnidad">
+                      <button  type="button" class="btn btn-success btn-block" (click)="temas(tema,'agregar');">{{tema}}</button>
+                   </div>
+                 </div>
+                
+              </div>
+
+              <div class="col-md-4">
+                  <div class="row align-items-center justify-content-center">
+                      <h5>Remover tema</h5>
+                    </div>
+                 <div class="contenido">
+                   <div *ngFor="let a of avance.programatico">
+                     <div *ngIf="a.materia._id===pe.materia._id">
+                        <div class="row margen" *ngFor="let tema of a.temas">
+                            <button  type="button" class="btn btn-danger btn-block" (click)="temas(tema,'remover');">{{tema}}</button>
+                         </div>
+                     </div>
+                   </div>
+                  
+                 </div>
+                
+              </div>
+            </div>
+            
+              <!-- <div class="panel panel-primary" id="result_panel">
+                  <div class="panel-heading">
+                    <h6 class="panel-title">Unidades</h6>
+                  </div>
+                  <div class="panel-body" >
+                    <ul class="list-group">
+                      <li class="list-group-item" >{{u.unidad}}
+                        <button type="button" (click)="mCompetencia(competencia,'eliminar');"
+                          style="font-size:5px; padding: 1px;" class="btn btn-danger rounded-circle"><i
+                            class="material-icons">remove</i></button>
+                      </li>
+                    </ul>
+                  </div>
+                </div> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+          </div>
+        </ng-template>
+
+
+
+
+<ng-template #noMostrar>
+  <h1>Control de asistencia y avances programáticos no disponible hasta la siguiente semana!</h1>
+</ng-template>

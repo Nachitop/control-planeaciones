@@ -1,0 +1,41 @@
+<app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar" (ocultarToast)="ocultarToast($event);"></app-toast>
+<h2 class="alinear-texto color-texto margin">Área académica</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+      
+        <input type="hidden" id="_id" name="_id" #_id="ngModel" [(ngModel)]="areaAcademica._id">
+        <label for="area_academica">Área Académica</label>
+        <input type="text" class="form-control form-control-lg" id="area_academica" name="area_academica" #area_academica="ngModel" [(ngModel)]="areaAcademica.nombre">
+      </div>
+     
+      <!-- <app-select-carrera  (obtenerCarreraEvent)="recibirCarrera($event)"></app-select-carrera> -->
+      <br>
+      <button type="button" class="btn btn-primary btn-block" (click)="guardar();">Guardar</button>
+      <br>
+    </div>
+    <div class="col">
+      <div class="table-responsive">
+          <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Área académica</th>
+             
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let area_academica of aas">
+                  <td>{{area_academica.nombre}}</td>
+           
+                  <td><button type="button" class="btn btn-warning" (click)="editar(area_academica);"><i class="material-icons" >edit</i></button></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    
+    </div>
+  </div>
+
+</div>

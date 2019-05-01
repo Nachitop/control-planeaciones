@@ -1,0 +1,40 @@
+<app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar"
+  (ocultarToast)="ocultarToast($event);"></app-toast>
+<h2 class="color-texto alinear-texto margin">Alumnos</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-md-6 col-lg-6 col-xl-6">
+        <div class="form-group">
+            <input type="hidden" name="_id" id="_id" #_id="ngModel"  [(ngModel)]="alumno.usuario._id">
+            <label for="matricula">Matrícula</label>
+            <input type="text" class="form-control form-control-lg" id="matricula" name="matricula" #matricula="ngModel"
+              [(ngModel)]="alumno.usuario.matricula" required>
+          </div>
+          <app-select-grupo [multiple]="multiple" (obtenerGrupoEvent)="obtenerGrupo($event);"></app-select-grupo>
+          <button type="button" class="btn btn-outline-primary btn-block" (click)="guardar();">Guardar</button>
+    </div>
+    <div class="col-xs-6 col-md-6 col-lg-6 col-xl-6">
+      <br>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Matrícula</th>
+              <th>Nombre</th>
+              <th>Grupo</th>
+              <th>Carrera</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let alumno of alumnos" [ngClass]="{'table-danger': alumno.status==='Inactivo', 'table-success': alumno.status==='Activo'}">
+                  <td>{{alumno.usuario.matricula}}</td>
+                  <td>{{alumno.usuario.nombre}} {{alumno.usuario.apellido}}</td>
+                  <td>{{alumno.grupo.grupo}}</td>
+                  <td>{{alumno.grupo.carrera.nombre}}</td>
+                  <td><button type="button" class="btn btn-warning"><i class="material-icons" (click)="editarAlumno(alumno);">edit</i></button></td>
+                </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>

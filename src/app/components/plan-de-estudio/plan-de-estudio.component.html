@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col">
+      <app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar" (ocultarToast)="ocultarToast($event);"></app-toast>
+    
+  </div>
+    <div class="col">
+        <button type="button" style="float:right" class="btn btn-info" routerLink="/ver-plan">Ver planes de estudio</button>
+    </div>
+    
+</div>
+
+<br>
+<h2 class="alinear-texto color-texto margin">Plan de estudio</h2>
+<div class="container">
+<div class="row">
+  <div class="col-xs-3 col-md-3 col-lg-3 col-xl-3">
+      <app-select-carrera  (obtenerCarreraEvent)="recibirCarrera($event)"></app-select-carrera>
+  </div>
+  <div class="col-xs-3 col-md-3 col-lg-3 col-xl-3">
+    
+      <div class="row">
+          
+        <div class="col-xs-6 col-md-6 col-lg-6 col-xl-6">
+         
+          <div class="form-group">
+              <label for="desde">Desde</label>
+              <input type="text" placeholder="2015" class="form-control form-control-lg" id="desde" name="desde"  [(ngModel)]="desde" required>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group">
+                <label for="Hasta">Hasta</label>
+                <input type="text" class="form-control form-control-lg"  placeholder="2019" id="hasta" name="hasta"   [(ngModel)]="hasta" required>
+              </div>
+              </div>
+
+      </div>
+ 
+    </div>
+  <div class="col-xs-3 col-md-3 col-lg-3 col-xl-3">
+    <div class="form-group">
+      <label for="forma">Forma</label>
+      <select class="form-control form-control-lg" id="forma" name="forma" #forma="ngModel" [(ngModel)]="plan.forma" required>
+        <option value="Bimestre">Bimestre</option>
+        <option value="Trimestre">Trimestre</option>
+        <option value="Cuatrimestre">Cuatimestre</option>
+        <option value="Semestre">Semestre</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-xs-3 col-md-3 col-lg-3 col-xl-3">
+    <div class="form-group">
+        <label for="cantidad">Cantidad</label>
+        <input type="text" class="form-control form-control-lg" id="cantidad" name="cantidad" [(ngModel)]="cantidad">
+    </div>
+    <!-- <app-select-materia [multiple]="multiple" (obtenerMateriaEvent)="recibirMateria($event);"></app-select-materia> -->
+    </div>
+</div>
+</div>
+<br>
+<br>
+<div class="row" style="margin-left:15px; margin-right:15px;">
+  <div class="container">
+      <div style="margin-left: 10px;margin-right: 10px; margin-top: 10px;" *ngFor="let i of cantidad | converttoarray">
+  
+          <!-- <app-select-materia [multiple]="multiple" (obtenerMateriaEvent)="recibirMateria($event);"></app-select-materia> -->
+          <app-materiacard [titulo]="plan.forma +' ' + (i+1)"(obtenerMateriasEvent)="recibirMaterias($event);"></app-materiacard>
+    
+   
+    
+
+  </div>
+  <br>
+  <br>
+  <button type="button" class="btn btn-outline-primary btn-block btn-large" *ngIf="plan.carrera._id!='' && desde!='' &&  hasta!='' && plan.forma!='' && cantidad>0 " [disabled]="estructura.length==0" (click)="guardar();">Guardar</button>
+  </div>
+
+  
+  
+
+
+
+</div>

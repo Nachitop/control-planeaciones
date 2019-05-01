@@ -1,0 +1,353 @@
+<br>
+<div class="row justify-content-center align-items-center">
+  <button type="button" class="btn btn-danger" (click)="convertirPDF();">CONVERTIR A PDF</button>
+</div>
+<br>
+
+<div id="h1"  class="size-letra">
+
+<div class="row" id="cabezera">
+
+<div class="col-md-3" >
+  <img src="assets/UAS.png" class="img-cabezera">
+</div>
+<div class="col-md-6 ">
+  <div class="row justify-content-center align-items-center">
+     <h2>UNIVERSIDAD AUTÓNOMA DE SINALOA</h2>
+ 
+  </div>
+  <div class="row justify-content-center align-items-center">
+     
+      <h3>Facultad de ingeniería Mochis</h3>
+   
+    
+   </div>
+   <div class="row justify-content-center align-items-center">
+    
+      <h4>Programa de estudio</h4> 
+   </div>
+
+
+
+
+
+</div>
+<div class="col-md-3">
+<img class="img-cabezera" src="assets/UAS-FIM.png" style="float:right;">
+  </div>
+</div>
+<br>
+
+
+
+
+     <div  id="datos-identificacion">
+        <div class="row justify-content-center align-items-center contorno">
+            <h5>1. Datos de identificación</h5>
+          </div>
+    
+        <div class="row">
+          <div class="col-md-4 contorno">
+            <h6>Unidad de aprendizaje o módulo:</h6>
+          </div>
+          <div class="col-md-8 contorno">
+            <p>{{programa.materia.nombre}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 contorno">
+              <h6>Clave:</h6>
+            </div>
+            <div class="col-md-8 contorno">
+              <p>{{programa.materia.clave}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-4 contorno">
+                <h6>Área académica:</h6>
+              </div>
+              <div class="col-md-8 contorno">
+                <p>{{programa.areaAcademica.nombre}}</p>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 contorno">
+                  <h6>Horas y créditos:</h6>
+                </div>
+                <div class="col-md-8 contorno">
+                  <div class="row">
+                    <div class="col-md-4 contorno">
+                      <label><strong>Teóricas: </strong>{{programa.materia.horas.teoria}}</label>
+                    </div>
+                    <div class="col-md-4 contorno">
+                        <label><strong>Prácticas: </strong>{{programa.materia.horas.practica}}</label>
+                      </div>
+                      <div class="col-md-4 contorno">
+                          <label><strong>Estudio independiente: </strong>{{programa.materia.horas.autoestudio}}</label>
+                        </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6 contorno">
+                          <label><strong>Total de horas: </strong>{{programa.materia.horas.teoria+programa.materia.horas.practica+programa.materia.horas.autoestudio}}</label>
+                        </div>
+                        <div class="col-md-6 contorno">
+                            <label><strong>Créditos: </strong>{{programa.materia.horas.creditos}}</label>
+                          </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-4 contorno">
+                      <h6>Competencia(s) del perfil de egreso a las que aporta:</h6>
+                    </div>
+                    <div class="col-md-8 contorno">
+                      <ul>
+                        <div class="row">
+                            <li *ngFor="let competencia of programa.competencia" class=" col-md-4 col-sm-12 col-xs-12">{{competencia.competencia}}</li>
+                        </div>
+                       
+                      </ul>
+                    </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4 contorno">
+                  <h6>Unidades de aprendizaje relacionadas:</h6>
+                </div>
+                <div class="col-md-8 contorno">
+                  <ul>
+                    <div class="row">
+                      <li *ngFor="let materia of programa.unidadesRelacionadas" class="col-md-4 col-sm-12 col-xs-12">{{materia.nombre}}</li>
+                    </div>
+                  </ul>
+                 
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4 contorno">
+                  <h6>Responsables de elaborar el programa:</h6>
+                </div>
+                <div class="col-md-8 contorno">
+                    <div class="row">
+                      <div class="col-md-8 contorno">
+                        <p>{{programa.elaboracion.nombre}}</p>
+                      </div>
+                      <div class="col-md-4 contorno">
+                        <label><strong>Fecha: </strong>{{programa.elaboracion.fecha | date: 'dd/MM/yyyy'}}</label>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-4 contorno">
+                    <h6>Responsables de actualizar el programa:</h6>
+                  </div>
+                  <div class="col-md-8 contorno">
+                      <div class="row">
+                        <div class="col-md-8 contorno">
+                          <p>{{programa.actualizacion.nombre}}</p>
+                        </div>
+                        <div class="col-md-4 contorno">
+                          <label><strong>Fecha: </strong>{{programa.actualizacion.fecha | date: 'dd/MM/yyyy'}}</label>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+
+     </div>
+
+     <div id="proposito">
+              <div class="row justify-content-center align-items-center contorno">
+                  <h5>2. PROPÓSITO</h5>
+                </div>
+            <div class="row contorno">
+              <ul>
+                <li class="col-md-12 col-sm-12 col-xs-12">{{programa.proposito}}</li>
+              </ul>
+        
+                
+              </div>
+     </div>
+
+     <div id="saberes">
+        <div class="row justify-content-center align-items-center contorno">
+            <h5>3. SABERES</h5>
+          </div>
+     
+          <div class="row">
+              <div class="col-md-4 contorno">
+                <h6>Teóricos:</h6>
+              </div>
+              <div class="col-md-8 contorno">
+                  <ul>
+                    <div class="row">
+                        <li class="col-md-12 col-sm-12 col-xs-12">{{programa.saberes.teoricos}}</li>
+                    </div>
+                      
+                    </ul>
+             
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 contorno">
+                  <h6>Prácticos:</h6>
+                </div>
+                <div class="col-md-8 contorno">
+                    <ul>
+                      <div class="row">
+                          <li class="col-md-12 col-sm-12 col-xs-12">{{programa.saberes.practicos}}</li>
+                      </div>
+                       
+                      </ul>
+                
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-4 contorno">
+                    <h6>Actitudinales:</h6>
+                  </div>
+                  <div class="col-md-8 contorno">
+                      <ul>
+                        <div class="row">
+                            <li class="col-md-12 col-sm-12 col-xs-12">{{programa.saberes.actitudinales}}</li>
+                        </div>
+                     
+                        </ul>
+                
+                  </div>
+                </div>
+</div>
+</div>
+<div id="h2" class="size-letra">
+<div id="contenidos">
+    <div class="row justify-content-center align-items-center contorno">
+        <h5>4. Contenidos</h5>
+      </div>
+      <div class="row contorno">
+        <div *ngFor="let contenido of programa.contenidos" class="col-md-4 col-xs-12 col-sm-12">
+          <h4>{{contenido.unidad}}</h4>
+            <ul >
+              <div class="row">
+                  <li *ngFor="let tema of contenido.temas" class="col-md-4 col-xs-12 col-sm-12">{{tema}}</li>
+              </div>
+              
+              </ul>
+        </div>
+        
+      </div>
+  
+  </div>
+</div>
+
+<div id="h3"  class="size-letra">
+
+  <div id="actividades">
+    <div class="row justify-content-center align-items-center contorno">
+      <h5>5. ACTIVIDADES PARA DESARROLLAR LAS COMPETENCIAS</h5>
+    </div>
+    <div class="row contorno">
+      <div class="col-md-4 contorno">
+          <h6>Actividades del docente:</h6>
+      </div>
+  <div class="col-md-8 contorno">
+      <ul>
+          <div class="row">
+              <li  class="col-md-4 col-xs-12 col-sm-12" *ngFor="let actividad of programa.actividadesDocente">{{actividad.nombre}}</li>
+          </div>
+         
+        </ul>
+  </div>
+   
+  
+    </div>
+
+    <div class="row contorno">
+        <div class="col-md-4 contorno">
+            <h6>Actividades del estudiante:</h6>
+        </div>
+    <div class="col-md-8 contorno">
+        <ul>
+            <div class="row">
+                <li  class="col-md-4 col-xs-12 col-sm-12" *ngFor="let actividad of programa.actividadesEstudiante">{{actividad.nombre}}</li>
+            </div>
+           
+          </ul>
+    </div>
+     
+    
+      </div>
+
+  </div>
+  <div id="evaluacion">
+      <div class="row justify-content-center align-items-center contorno">
+          <h5>6. EVALUACIÓN DE LAS COMPETENCIAS</h5>
+        </div>
+        <div class="row">
+          <div class="col-md-4 contorno">
+            <h6>Evidencias:</h6>
+          </div>
+          <div class="col-md-8 contorno">
+            <div class="col-md-4 col-xs-12 col-sm-12" *ngFor="let evidencia of programa.evidencias">
+              <h6>{{evidencia.evidencia}}</h6>
+                  <ul>
+              <div class="row">
+                  <li  class="col-md-4 col-xs-12 col-sm-12" *ngFor="let criterio of evidencia.criterios">{{criterio.criterio}}-{{criterio.porcentaje}}%</li>
+              </div>
+            </ul>
+            </div>
+        
+          </div>
+        </div>
+  </div>
+
+  <div id="fuentes" *ngIf="programa.bibliografias.length>0">
+      <div class="row justify-content-center align-items-center contorno">
+      <h5>7. FUENTES DE INFORMACIÓN</h5>
+    </div>
+    <div class="row contorno">
+      
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Autor(es)</th>
+            <th>Título</th>
+            <th>Editorial</th>
+            <th>Año</th>
+            <th>URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let biblio of programa.bibliografias">
+            <td>{{biblio.autor}}</td>
+            <td>{{biblio.titulo}}</td>
+            <td>{{biblio.editorial}}</td>
+            <td>{{biblio.ano}}</td>
+            <td>{{biblio.url}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="perfil">
+      <div class="row justify-content-center align-items-center contorno">
+          <h5>8. PERFIL DEL PROFESOR</h5>
+        </div>
+        <div class="row contorno">
+            <ul>
+              <li class="col-md-12 col-sm-12 col-xs-12">{{programa.perfil}}</li>
+            </ul>
+      
+              
+            </div>
+  </div>
+  </div>
+  
+
+

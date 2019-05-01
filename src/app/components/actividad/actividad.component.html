@@ -1,0 +1,51 @@
+<app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar" (ocultarToast)="ocultarToast($event);"></app-toast>
+<h2 class="alinear-texto color-texto margin">Actividades</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+      
+        <input type="hidden" id="_id" name="_id" #_id="ngModel" [(ngModel)]="actividad._id">
+        <label for="nombre">Actividad</label>
+        <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="actividad.nombre">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="de">Persona</label>
+          <select class="form-control form-control-lg" id="de" name="de" #de="ngModel" [(ngModel)]="actividad.de">
+            <option value="Docente">Docente</option>
+            <option value="Estudiante">Estudiante</option>
+            </select>
+      </div>
+  
+     
+  
+      <br>
+      <button type="button" class="btn btn-primary btn-block" (click)="guardar();">Guardar</button>
+      <br>
+    </div>
+    <div class="col-md-6">
+      <div class="table-responsive">
+          <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Actividad</th>
+                  <th>Persona</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let act of actividades">
+                  <td>{{act.nombre}}</td>
+                  <td>{{act.de}}</td>
+           
+                  <td><button type="button" class="btn btn-warning" (click)="editar(act);"><i class="material-icons" >edit</i></button></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    
+    </div>
+  </div>
+
+</div>

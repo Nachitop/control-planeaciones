@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col">
+        <app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar" (ocultarToast)="ocultarToast($event);"></app-toast>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-info" routerLink="ver-programa-estudio" style="float:right;">Ver programas de estudio</button>
+    </div>
+  </div>
+  <br>
+<h2 class="alinear-texto color-texto margin">Competencias</h2>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div cclass="form-group">
+        <input type="hidden" id="_id" name="_id" #_id="ngModel" [(ngModel)]="compe._id">
+        <label for="competencia">Competencia</label>
+        <input type="text" class="form-control form-control-lg" id="competencia" name="competencia" #competencia="ngModel" [(ngModel)]="compe.competencia">
+      </div>
+      <br>
+      <button type="button" class="btn btn-primary btn-block" [disabled]="compe.competencia==''" (click)="guardar();">Guardar</button>
+    </div>
+    <div class="col">
+      <br>
+      <div class="table-responsive" *ngIf="competencias.length>0">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Competencia</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let competencia of competencias">
+              <td>{{competencia.competencia}}</td>
+              <td><button type="button" class="btn btn-warning" (click)="actualizar(competencia);"><i class="material-icons">edit</i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+
+<app-toast  *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar"
+(ocultarToast)="ocultarToast($event);"></app-toast>
+<h2 class="alinear-texto color-texto margin">Listado de horarios</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label for="horario">Seleccione un horario</label>
+            <select class="form-control form-control-lg" id="horario" name="horario" (change)="obtenerHorario();" [(ngModel)]="horario._id">
+              <option *ngFor="let h of horarios" [value]="h._id">{{h.grupo.grupo}}-{{h.grupo.carrera.nombre}},{{h.grupo.carrera.facultad}},{{h.plan.periodo}},{{h.plan.forma}}</option>
+            </select>
+          </div>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <div class="row"  *ngIf="horario._id!=''">
+    <div class="col">
+        <button style="float:right; margin-bottom: 10px;" type="button" class="btn btn-danger" (click)="eliminarHorario();"><i class="material-icons">delete</i> Eliminar</button>
+    </div>
+  </div>
+
+  <div class="row">
+     
+    <div class="col"  *ngIf="horario._id!=''">
+    
+      <div class="card-group">
+          <div class="card" *ngFor="let ho of horario.horario">
+           
+              <div class="card-body">
+                
+                <p class="card-text">Materia: {{ho.materia.nombre}}</p>
+                <p class="card-text">Profesor: {{ho.profesor.usuario.nombre}} {{ho.profesor.usuario.apellido}} </p>
+                <br>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Día</th>
+                            <th>Inicio</th>
+                            <th>Fin</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let esquema of ho.esquema">
+                              <td>{{esquema.dia}}</td>
+                              <td>{{esquema.inicio}}</td>
+                              <td>{{esquema.fin}}</td>
+                            </tr>
+                          </tbody>
+                      </table>
+                </div>
+            
+                <!-- <div class="row">
+                  <div class="col">
+                      <label class="card-text">Materia:</label>
+                  </div>
+                  <div class="col">
+                    <label class="card-text">{{ho.materia.nombre}}</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                      <label class="card-text">Profesor:</label>
+                  </div>
+                  <div class="col">
+                    <label class="card-text">
+                        {{ho.profesor.usuario.nombre}} {{ho.profesor.usuario.apellido}} 
+                    </label>
+                  </div>
+                </div> -->
+               
+               
+              </div>
+            </div>
+      </div>
+   
+    </div>
+  </div>
+</div>

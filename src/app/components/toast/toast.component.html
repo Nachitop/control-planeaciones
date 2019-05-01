@@ -1,0 +1,18 @@
+<br>
+<div class="row">
+  <div class="col-2">
+      <div class="toast" data-autohide="false" >
+          <div class="toast-header">
+            <strong class="mr-auto text" [ngClass]="{'error': titulo==='Error', 'exito': titulo==='Exito'}">{{titulo}}</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" (click)="esconder();">&times;</button>
+          </div>
+          <div class="toast-body">
+           {{cuerpo}}
+          </div>
+        </div>
+  </div>
+ 
+    
+</div>
+
+  <br>

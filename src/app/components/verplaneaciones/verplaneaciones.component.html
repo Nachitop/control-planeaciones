@@ -1,0 +1,48 @@
+<app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar"
+  (ocultarToast)="ocultarToast($event);"></app-toast>
+<h2 class="color-texto alinear-texto margin">Ver plan de estudios</h2>
+<br>
+<div class="container">
+  <div class="row alinear-texto">
+    <div class="container">
+        <app-select-plan [multiple]="multiple" (obtenerPlanEvent)="obtenerPlan($event);"></app-select-plan>
+        
+
+    </div>
+     
+  </div>
+  <br>
+  <br>
+  <div class="row">
+      
+    <div class="container">
+        <div class="row">
+          <div class="col">
+
+          </div>
+          <div class="col">
+              <button type="button"  class="btn btn-danger" style="float:right" *ngIf="plan._id!=''" (click)="eliminarPlan();">Eliminar plan de estudio</button>
+            </div>
+           
+        </div>
+      
+      
+            <div style="margin-top:5px;" *ngIf="plan.materias.length>0">
+                <div class="card" *ngFor="let materia of plan.materias">
+                  
+                  <div class="card-body">
+                      <h5 class="card-title">{{materia.forma}}</h5>
+                      <br>
+                      <ul>
+                        <li *ngFor="let materia2 of materia.materias">{{materia2.materia.nombre}}</li>
+                      </ul>
+                  </div>
+                </div>
+              </div>
+        
+     
+    </div>
+  </div>
+
+</div>
+

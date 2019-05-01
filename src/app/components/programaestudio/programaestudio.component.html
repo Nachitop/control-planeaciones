@@ -1,0 +1,616 @@
+
+
+
+<div class="row">
+  <div class="col-md-6">
+    <app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar"
+      (ocultarToast)="ocultarToast($event);"></app-toast>
+  </div>
+  <div class="col-md-6">
+    <button style="float: right" type="button" class="btn btn-info" (click)="abrirModal(content);">Ver programas de
+      estudio</button>
+  </div>
+</div>
+
+<br>
+<h2 class="alinear-texto color-texto margin">Programa de estudio</h2>
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 ">
+
+
+      <div class=" div-sombreado">
+        <h4>1. Datos de identificación</h4>
+        <br>
+        <div class="div-sombreado-2">
+          <div class="form-group">
+            <input type="hidden" id="_id" name="_id" #_id="ngModel" [(ngModel)]="pe._id">
+            <label for="materia">Materia</label>
+            <select class="form-control form-control-lg" id="materia" name="materia" #materia="ngModel"
+              [(ngModel)]="pe.materia._id">
+              <option *ngFor="let m of materias" [value]="m._id">{{m.nombre}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="aa">Área académica</label>
+            <select class="form-control form-control-lg" id="aa" name="aa" #aa="ngModel"
+              [(ngModel)]="pe.areaAcademica._id">
+              <option *ngFor="let aa of aas" [value]="aa._id">{{aa.nombre}}</option>
+            </select>
+          </div>
+        </div>
+
+        <br>
+        <div class="div-sombreado-3">
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="div-sombreado-2">
+                <div class="panel panel-primary" id="result_panel">
+                  <div class="panel-heading">
+                    <h6 class="panel-title">Competencias del perfil de egreso</h6>
+                  </div>
+                  <div class="panel-body">
+                    <ul class="list-group">
+                      <li class="list-group-item" *ngFor="let competencia of competencias">{{competencia.competencia}}
+                        <button type="button" (click)="mCompetencia(competencia,'agregar');"
+                          style="font-size:5px; padding: 1px;" class="btn btn-success rounded-circle"><i
+                            class="material-icons">add</i></button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="div-sombreado-2" *ngIf="pe.competencia.length>0">
+                <div class="panel panel-primary" id="result_panel">
+                  <div class="panel-heading">
+                    <h6 class="panel-title">Competencias del perfil de egreso (Ya agregadas)</h6>
+                  </div>
+                  <div class="panel-body">
+                    <ul class="list-group">
+                      <li class="list-group-item" *ngFor="let competencia of pe.competencia">{{competencia.competencia}}
+                        <button type="button" (click)="mCompetencia(competencia,'eliminar');"
+                          style="font-size:5px; padding: 1px;" class="btn btn-danger rounded-circle"><i
+                            class="material-icons">remove</i></button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <br>
+
+        <div class="row div-sombreado-3">
+          <div class="col-md-6">
+            <div class="div-sombreado-2">
+              <h5>Unidades de aprendizaje relacionadas</h5>
+              <br>
+              <div class="panel panel-primary" id="result_panel">
+                <div class="panel-heading">
+                  <h6 class="panel-title">Materias</h6>
+                </div>
+                <div class="panel-body">
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let m2 of materias">{{m2.nombre}} <button type="button"
+                        (click)="mMateria(m2,'agregar');" style="font-size:5px; padding: 1px;"
+                        class="btn btn-success rounded-circle"><i class="material-icons">add</i></button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="col-md-6">
+            <br>
+            <br>
+            <div class="div-sombreado-2" *ngIf="pe.unidadesRelacionadas.length>0">
+              <div class="panel panel-primary" id="result_panel">
+                <div class="panel-heading">
+                  <h6 class="panel-title">Materias (Ya agregadas)</h6>
+                </div>
+                <div class="panel-body">
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let unidad of pe.unidadesRelacionadas">{{unidad.nombre}}
+                      <button type="button" (click)="mMateria(unidad,'eliminar');" style="font-size:5px; padding: 1px;"
+                        class="btn btn-danger rounded-circle"><i class="material-icons">remove</i></button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <br>
+        <div class="div-sombreado-3">
+          <h5>Responsables de elaborar el programa</h5>
+          <div class="row">
+            <div class="col-md-7">
+              <div class="form-group">
+                <label for="nombre">Nombres</label>
+                <input type="text" class="form-control-lg form-control" id="nombre" name="nombre" #nombre="ngModel"
+                  [(ngModel)]="pe.elaboracion.nombre">
+
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group ">
+                <label for="fecha"> Fecha</label>
+                <input type="date" class=" form-control form-control-lg" id="fecha" name="fecha" #fecha="ngModel"
+                  [(ngModel)]="pe.elaboracion.fecha">
+              </div>
+            </div>
+          </div>
+          <br>
+          <h5>Responsables de actualizar el programa</h5>
+          <div class="row">
+            <div class="col-md-7">
+              <div class="form-group">
+                <label for="nombreA">Nombres</label>
+                <input type="text" class="form-control-lg form-control" id="nombreA" name="nombreA" #nombreA="ngModel"
+                  [(ngModel)]="pe.actualizacion.nombre">
+
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group ">
+                <label for="fechaA"> Fecha</label>
+                <input type="date" class=" form-control form-control-lg" id="fechaA" name="fechaA" #fechaA="ngModel"
+                  [(ngModel)]="pe.actualizacion.fecha">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+
+
+    <div class="col-md-6">
+      <div class="div-sombreado">
+        <div class="div-sombreado-3">
+          <h4>2. Propósito</h4>
+          <div class="form-group">
+            <label for="proposito">Escribe el propósito</label>
+            <textarea class="form-control form-control-lg" id="proposito" name="proposito" #proposito="ngModel"
+              [(ngModel)]="pe.proposito"></textarea>
+          </div>
+        </div>
+
+        <br>
+        <div class="div-sombreado-3">
+          <h4>3. Saberes</h4>
+          <div>
+            <div class="form-group">
+              <label for="teoricos">Teóricos</label>
+              <textarea class="form-control form-control-lg" id="teoricos" name="teoricos" #teoricos="ngModel"
+                [(ngModel)]="pe.saberes.teoricos"></textarea>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="practicos">Prácticos</label>
+              <textarea class="form-control form-control-lg" id="practicos" name="practicos" #practicos="ngModel"
+                [(ngModel)]="pe.saberes.practicos"></textarea>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="actitudinales">Actitudinales</label>
+              <textarea class="form-control form-control-lg" id="actitudinales" name="actitudinales"
+                #practicos="ngModel" [(ngModel)]="pe.saberes.actitudinales"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <div class="row div-sombreado">
+      
+      <div class="col-md-6">
+          <h4>4. Contenidos</h4>
+          <div class="div-sombreado-3"> 
+             
+              <div class="row">
+        
+                <div class="col-md-6">
+                  <div class="div-sombreado-2">
+                      <div class="form-group">
+                          <label for="unidad">Unidad</label>
+                          <input type="text" class="form-control form-control-lg" id="unidad" name="unidad" [(ngModel)]="contenido.unidad">
+                         
+                        </div>
+                      <div class="form-group">
+                          <label for="contenido">Tema</label>
+                          <input type="text" class="form-control form-control-lg" id="contenido" name="contenido" [(ngModel)]="contenido.tema">
+                         
+                        </div>
+                    
+                        <button type="button" class="btn btn-success" (click)="mContenido('agregar');">Agregar</button>
+                  </div>
+             
+                </div>
+                <div class="col-md-6" >
+                  
+                    <div class="div-sombreado-2" >
+                        <div class="panel panel-primary" id="result_panel">
+                            <div class="panel-heading">
+                              <h6 class="panel-title">unidad de la materia (ya agregados)</h6>
+                            </div>
+                            <div class="panel-body">
+                              <ul class="list-group">
+                                <li class="list-group-item" *ngFor="let contenido of pe.contenidos">{{contenido.unidad}}  <button type="button"
+                                  (click)="verTemasContenido(contenido); " style="font-size:18px; padding: 1px;" 
+                                  class="btn btn-info rounded-circle ">Ver</button><button type="button"
+                                    (click)="mContenido('eliminar',contenido.unidad);" style="font-size:5px; padding: 1px;"
+                                    class="btn btn-danger rounded-circle"><i class="material-icons">remove</i></button>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                    </div>
+             
+                </div>
+              </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+         <br>
+            <div class="div-sombreado-3"  >
+                <div class="div-sombreado-2">
+                    <div class="panel panel-primary" id="result_panel">
+                        <div class="panel-heading">
+                          <h6 class="panel-title">Temas de la unidad (ya agregados)</h6>
+                        </div>
+                        <div class="panel-body">
+                          <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let tema of cont.temas">{{tema}} <button type="button"
+                                (click)="eliminarTema(tema);" style="font-size:5px; padding: 1px;"
+                                class="btn btn-danger rounded-circle"><i class="material-icons">remove</i></button>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+        </div>
+  
+  </div>
+<br>
+  <div class="row div-sombreado">
+
+   
+
+
+
+        <div class="col-md-6">
+            <h4>5. Actividades para desarrollar las competencias</h4>
+            
+ 
+          <div class="row div-sombreado-3">
+            <div class="col-md-6">
+              <div class="div-sombreado-2">
+              <div class="panel panel-primary" id="result_panel">
+                <div class="panel-heading">
+                  <h6 class="panel-title">Actividades del docente</h6>
+                </div>
+                <div class="panel-body">
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let actividadDocente of actividadesDocente">
+                      {{actividadDocente.nombre}} <button type="button"
+                        (click)="mActividadDocente(actividadDocente,'agregar');" style="font-size:5px; padding: 1px;"
+                        class="btn btn-success rounded-circle"><i class="material-icons">add</i></button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+            
+                <div class="div-sombreado-2">
+              <div class="panel panel-primary" id="result_panel">
+                <div class="panel-heading">
+                  <h6 class="panel-title">Actividades del docente (ya agregadas)</h6>
+                </div>
+                <div class="panel-body">
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let actividadDocente of pe.actividadesDocente">
+                      {{actividadDocente.nombre}} <button type="button"
+                        (click)="mActividadDocente(actividadDocente,'eliminar');" style="font-size:5px; padding: 1px;"
+                        class="btn btn-danger rounded-circle"><i class="material-icons">remove</i></button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+</div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-md-6">
+            <br>
+           
+          <div class="row div-sombreado-3">
+            <div class="col-md-6">
+              <div class="div-sombreado-2">
+              <div class="panel panel-primary" id="result_panel">
+                <div class="panel-heading">
+                  <h6 class="panel-title">Actividades del estudiante</h6>
+                </div>
+                <div class="panel-body">
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let actividadEstudiante of actividadesEstudiante">
+                      {{actividadEstudiante.nombre}} <button type="button"
+                        (click)="mActividadEstudiante(actividadEstudiante,'agregar');"
+                        style="font-size:5px; padding: 1px;" class="btn btn-success rounded-circle"><i
+                          class="material-icons">add</i></button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <div class="div-sombreado-2">
+              <div class="panel panel-primary" id="result_panel">
+                <div class="panel-heading">
+                  <h6 class="panel-title">Actividades del estudiante (ya agregadas)</h6>
+                </div>
+                <div class="panel-body">
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let actividadEstudiante of pe.actividadesEstudiante">
+                      {{actividadEstudiante.nombre}} <button type="button"
+                        (click)="mActividadEstudiante(actividadEstudiante,'eliminar');"
+                        style="font-size:5px; padding: 1px;" class="btn btn-danger rounded-circle"><i
+                          class="material-icons">remove</i></button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+  
+
+
+
+
+
+  </div>
+  <br>
+
+  <div class="row div-sombreado">
+
+    <div class="col-md-6">
+      <h4>6. Evaluación de las competencias</h4>
+      <div class="row div-sombreado-3">
+        <div class="col-md-6">
+          <div class="div-sombreado-2">
+              <div class="form-group">
+                  <label for="evidencia">Evidencia</label>
+                  <input type="text" class="form-control form-control-lg" id="evidencia" name="evidencia" #evidencia="ngModel"
+                    [(ngModel)]="evi.evidencia">
+                
+                
+                </div>
+                <div class="form-group">
+                  <label for="criterio">Criterio de evaluacion</label>
+                  <input type="text" class="form-control form-control-lg" id="criterio" name="criterio" #criterio="ngModel" [(ngModel)]="evi.criterio">
+                </div>
+                <div class="form-group">
+                    <label for=porcentaje>Porcentaje</label>
+                    <input type="text" class="form-control form-control-lg" id="porcentaje" name="porcentaje" #porcentaje="ngModel" [(ngModel)]="evi.porcentaje">
+                  </div>
+                <button type="button" class="btn btn-success" (click)="mEvidencia('agregar');">Agregar</button>
+          </div>
+       
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-primary  div-sombreado-2" id="result_panel" >
+            <div class="panel-heading">
+              <h6 class="panel-title">Evidencias (ya agregadas)</h6>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let evidencia of pe.evidencias">{{evidencia.evidencia}} <button type="button"
+                  (click)="verEvidencias(evidencia); " style="font-size:18px; padding: 1px;" 
+                  class="btn btn-info rounded-circle ">Ver</button> <button type="button"
+                    (click)="mEvidencia('eliminar',evidencia);" style="font-size:5px; padding: 1px;"
+                    class="btn btn-danger rounded-circle"><i class="material-icons">remove</i></button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+    <br>
+    <div class="div-sombreado-3">
+        <div class="panel panel-primary div-sombreado-2" id="result_panel" >
+            <div class="panel-heading">
+              <h6 class="panel-title">Criterios de desempeño y porcentaje (ya agregadas)</h6>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let c of evidencia2.criterios">
+                  {{c.criterio}}-{{c.porcentaje}}% <button type="button"
+                    (click)="eliminarCriterio(c);" style="font-size:5px; padding: 1px;"
+                    class="btn btn-danger rounded-circle"><i class="material-icons">remove</i></button>
+                </li>
+              </ul>
+            </div>
+          </div>
+    </div>
+         
+        
+
+      
+    </div>
+
+  </div>
+  <br>
+  <div class="row div-sombreado">
+    
+    <div class="col-md-6">
+        <h4>7. Fuentes de información</h4>
+        <br>
+      <div class="div-sombreado-3">
+          <div class="row">
+              <div class="col-md-6">
+                <div class="div-sombreado-2">
+                    <h5>Bibliografía</h5>
+                    <br>
+                    <div class="form-group">
+                      <label for="autor">Autor(es)</label>
+                      <input type="text" class="form-control form-control-lg" id="autor" name="autor" #autor="ngModel"
+                        [(ngModel)]="bibliografia.autor">
+                    </div>
+              
+                    <div class="form-group">
+                      <label for="titulo">Titulo</label>
+                      <input type="text" class="form-control form-control-lg" id="titulo" name="titulo" #titulo="ngModel"
+                        [(ngModel)]="bibliografia.titulo">
+                    </div>
+              
+                    <div class="form-group">
+                      <label for="editorial">Editorial</label>
+                      <input type="text" class="form-control form-control-lg" id="editorial" name="editorial" #editorial="ngModel"
+                        [(ngModel)]="bibliografia.editorial">
+                    </div>
+              
+                    <div class="form-group">
+                      <label for="ano">Año</label>
+                      <input type="text" class="form-control form-control-lg" id="ano" name="ano" #ano="ngModel"
+                        [(ngModel)]="bibliografia.ano">
+                    </div>
+              
+                    <div class="form-group">
+                      <label for="url">URL</label>
+                      <input type="text" class="form-control form-control-lg" id="url" name="url" #url="ngModel"
+                        [(ngModel)]="bibliografia.url">
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-success" (click)="mBibliografia('agregar');">Agregar</button>
+                </div>
+              
+          
+              </div>
+              <div class="col-md-6">
+               
+                <div class="panel panel-primary div-sombreado-2" id="result_panel">
+                  <div class="panel-heading">
+                    <h6 class="panel-title">Bibliografias (ya agregadas)</h6>
+                  </div>
+                  <div class="panel-body">
+                    <ul class="list-group">
+                      <li class="list-group-item" *ngFor="let bibliografia of pe.bibliografias">
+                        {{bibliografia.autor}}-{{bibliografia.titulo}}-{{bibliografia.ano}}-{{bibliografia.url}} <button
+                          type="button" (click)="mBibliografia('eliminar',bibliografia);" style="font-size:5px; padding: 1px;"
+                          class="btn btn-danger rounded-circle"><i class="material-icons">remove</i></button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+ 
+    <div class="col-md-6">
+        <h4>8. Perfil del profesor</h4>
+        <br>
+       <div class="div-sombreado-3">
+        <div class="div-sombreado-2">
+            <div class="row">
+                <div class="col-md-12">
+  
+                 <label for="perfil">Perfil</label>
+                  <textarea class="form-control form-control-lg" id="perfil" name="perfil" #perfil="ngModel" [(ngModel)]="pe.perfil"
+                    placeholder="Describa aquí el perfil que debe de tener el profesor para impartir la materia"></textarea>
+                </div>
+            
+            
+            
+              </div>
+           
+        </div>
+      </div>
+      </div>
+  </div>
+
+
+
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="guardar();">Guardar</button>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Programas de estudio</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div style=" height: 300px; width: 100%;" class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Materia</th>
+            <th>Elaboración</th>
+            <th>Actualizacion</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pe1 of pes">
+            <td>{{pe1.materia.nombre}}</td>
+            <td>{{pe1.elaboracion.fecha}}</td>
+            <td>{{pe1.actualizacion.fecha}}</td>
+            <td><button type="button" style="margin-right:5px;" class="btn btn-warning" (click)="editarPE(pe1);"><i
+                  class="material-icons">edit</i></button><button type="button" class="btn btn-danger" (click)="verPrograma(pe1);"><i class="material-icons">file_copy</i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

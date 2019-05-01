@@ -1,0 +1,16 @@
+
+    <div class="card"  >
+<div class="card-body" >
+    <h5 class="car-title">{{titulo}}</h5>
+    <br>
+      <label for="cantidadMaterias">Cantidad de materias</label>
+      <input type="text" class="form-control form-control-lg" id="cantidadMaterias" name="cantidadMaterias"  [(ngModel)]="cantidad" required>
+      
+    <br>
+    <div  *ngFor="let i of cantidad | converttoarray">
+      <label>Materia {{i+1}}</label>
+      <app-select-materia [multiple]="multiple" [index]="i" (obtenerMateriaEvent)="recibirMateria($event);" ></app-select-materia></div>
+
+
+  </div>
+</div>

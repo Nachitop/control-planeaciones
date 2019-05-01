@@ -1,0 +1,100 @@
+<app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar" (ocultarToast)="ocultarToast($event);"></app-toast>
+<h2 class="alinear-texto color-texto margin">Materias</h2>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-md-6 col-lg-6 col-xl-6">
+      <input type="hidden" id="_id" name="_id" #_id="ngModel" [(ngModel)]="materia._id">
+      <div class="form-group">
+        <label for="clave">Clave</label>
+        <input type="text" class="form-control form-control-lg" id="clave" name="clave" #clave="ngModel" [(ngModel)]="materia.clave" required> 
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="materia.nombre" required>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>Horas</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+                <label for="teoria">Teoricas</label>
+                <input type="text" class="form-control form-control-lg" id="teoria" name="teoria" #nombre="ngModel" [(ngModel)]="materia.horas.teoria" required>
+            </div>
+          </div>
+          <div class="col">
+              <div class="form-group">
+                  <label for="practica">Prácticas</label>
+                  <input type="text" class="form-control form-control-lg" id="practica" name="practica" #nombre="ngModel" [(ngModel)]="materia.horas.practica" required>
+              </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="autoestudio">Auto-estudio</label>
+                    <input type="text" class="form-control form-control-lg" id="autoestudio" name="autoestudio" #nombre="ngModel" [(ngModel)]="materia.horas.autoestudio" required>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                    <label for="creditos">Créditos</label>
+                    <input type="text" class="form-control form-control-lg" id="creditos" name="creditos" #creditos="ngModel" [(ngModel)]="materia.horas.creditos" required>
+                </div>
+              </div>
+           
+        </div>
+      </div>
+      <br>
+
+        <button class="btn btn-outline-primary btn-block" [disabled]="materia.nombre=='' || materia.clave==''" (click)="guardarMateria();">Guardar</button>
+        
+    </div>
+    <div class="col-xs-6 col-md-6 col-lg-6 col-xl-6">
+        <br>
+        <table *ngIf="materias.length>0" class="table table-bordered">
+          <thead>
+            <tr>
+              <th span="col">Clave</th>
+              <th>Nombre</th>
+              <th>Teoria(hrs)</th>
+              <th>Práctic(hrs)</th>
+              <th>Auto-estudio(hrs)</th>
+             <th>Créditos</th>
+            
+              <th>Acción</th>
+             
+            </tr>
+            <!-- <tr>
+                <th>Teoria</th>
+                <th>Práctica</th>
+                <th>Auto-Estudio</th>
+
+          
+            </tr> -->
+        
+         
+          </thead>
+          <tbody>
+            <tr  *ngFor="let materia of materias">
+                <td>{{materia.clave}}</td>
+              <td>{{materia.nombre}}</td>
+              <td>{{materia.horas.teoria}}</td>
+              <td>{{materia.horas.practica}}</td>
+              <td>{{materia.horas.autoestudio}}</td>
+              <td>{{materia.horas.creditos}}</td>
+              <td><button type="button" class="btn btn-warning" (click)="editMateria(materia);" ><i class="material-icons" >edit</i></button></td>
+            </tr>
+            <tr  *ngFor="let materia of materias">
+              
+            </tr>
+          
+          </tbody>
+        </table>
+
+        
+      </div>
+      
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="form-group">
+  <label for="select-plan">Seleccionar plan de estudio</label>
+  <select class="form-control form-control-lg" id="plan" name="plan" [(ngModel)]="plan_id" [multiple]="multiple" (change)="seleccionarPlan();">
+    <option *ngFor="let plan of planes" [value]="plan._id">{{plan.carrera.nombre}}, {{plan.periodo}}, {{plan.forma}}</option>
+  </select>
+</div>

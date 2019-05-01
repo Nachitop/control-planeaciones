@@ -1,0 +1,41 @@
+<app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar"
+  (ocultarToast)="ocultarToast($event);"></app-toast>
+<h2 class="color-texto alinear-texto margin">Profesores</h2>
+<div class="container">
+  <div class="row">
+      <div class="col-xs-6 col-md-6 col-lg-6 col-xl-6">
+          <div class="form-group">
+              <input type="hidden" name="_id" id="_id" #_id="ngModel"  [(ngModel)]="profesor.usuario._id">
+              <label for="matricula">Matrícula</label>
+              <input type="text" class="form-control form-control-lg" id="matricula" name="matricula" #matricula="ngModel"
+                [(ngModel)]="profesor.usuario.matricula" required>
+            </div>
+            <!-- <app-select-plan [multiple]="multiple" (obtenerPlanEvent)="obtenerPlan($event);"></app-select-plan>
+            <app-select-grupo [multiple]="multiple" (obtenerGrupoEvent)="obtenerGrupo($event);"></app-select-grupo> -->
+            <button type="button" class="btn btn-primary btn-block btn-lg"  (click)="guardar();">Guardar</button>
+        </div>
+        <div class="col-xs-6 col-md-6 col-lg-6 col-xl-6">
+          <table *ngIf="profesores.length>0" class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Matrícula</th>
+                <th>Nombre</th>
+                <!-- <th>Plan de estudio</th>
+                <th>Grupo</th> -->
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let profesor of profesores">
+                <td>{{profesor.usuario.matricula}}</td>
+                <td>{{profesor.usuario.nombre}}  {{profesor.usuario.apellido}}</td>
+                <!-- <td><p *ngFor="let plan of profesor.plan; let i = index">{{i+1}}.-{{plan.carrera.nombre}}, {{plan.periodo}}, {{plan.forma}}</p></td>
+                <td><p *ngFor="let grupo of profesor.grupo; let i = index">{{i+1}}.- {{grupo.grupo}}-{{grupo.carrera.nombre}}</p></td> -->
+                <td><button type="button" class="btn btn-danger" (click)="eliminar(profesor);"><i class="material-icons">delete</i></button></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+    </div>
+
+  </div>

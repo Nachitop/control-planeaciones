@@ -1,0 +1,7 @@
+<br>
+<div class="form-group">
+    <select [multiple]="multiple" name="grupo" id="grupo" class="form-control form-control-lg" (change)="seleccionarGrupo();" [(ngModel)]="grupo_id">
+        <option *ngFor="let grupo of grupos" [value]="grupo._id">{{grupo.grupo}}-{{grupo.carrera.nombre}} </option>
+      </select>
+</div>
+<br>

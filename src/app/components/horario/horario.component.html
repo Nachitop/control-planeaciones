@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col">
+        <app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar" (ocultarToast)="ocultarToastEvent($event);"></app-toast>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-info" routerLink="/ver-horario" style="float:right;">Ver Horarios</button>
+    </div>
+  </div>
+<br>
+<h2 class="alinear-texto color-texto margin">Horarios</h2>
+<br>
+<div class="container">
+  <div class="row">
+
+  <div class="col">
+      <label>Grupo</label>
+      <app-select-grupo [multiple]="multiple" (obtenerGrupoEvent)="obtenerGrupo($event);"></app-select-grupo>
+
+      
+      <app-select-plan [multiple]="multiple" (obtenerPlanEvent)="obtenerPlan($event);"></app-select-plan>
+      <div class="form-group">
+       <label>Escoger {{plan.forma}}</label>
+      <select class="form-control form-control-lg" (change)="mostrarMaterias();" [(ngModel)]="forma">
+        <option *ngFor="let materia of plan.materias" [value]="materia.forma">{{materia.forma}}</option>
+      </select>
+      </div>
+  </div>
+     
+    
+     
+  
+
+  </div>
+  <div class="row" >
+      <div class="card" style="margin-bottom:25px; margin-right: 10px; margin-left: 10px; width: 100%;" *ngFor="let materia of materias">
+          <div class="card-header">
+              <h5 class="card-title">{{materia.materia.nombre}}</h5>
+            </div>
+        <div class="card-body">
+          <input type="hidden" [value]="materia.materia._id">
+          <select class="form-control form-control-lg" id="select-profesor-{{materia.materia.nombre}}" name="select-profesor-{{materia.materia.nombre}}" >
+            <!-- <option>Seleccione un profesor</option> -->
+            <option *ngFor="let profesor of profesores" [value]="profesor._id">{{profesor.usuario.matricula}}-{{profesor.usuario.nombre}} {{profesor.usuario.apellido}}</option>
+          </select>
+          <br>
+          <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Días</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td  >Lunes</td>
+                    <td><input class="form-control" type="time"></td>
+                    <td><input class="form-control" type="time"></td>
+                  </tr>
+                  <tr>
+                      <td>Martes</td>
+                      <td><input class="form-control" type="time"></td>
+                      <td><input class="form-control" type="time"></td>
+                    </tr>
+                    <tr>
+                        <td>Miércoles</td>
+                        <td><input class="form-control" type="time"></td>
+                        <td><input class="form-control" type="time"></td>
+                      </tr>
+                      <tr>
+                          <td>Jueves</td>
+                          <td><input class="form-control" type="time"></td>
+                          <td><input class="form-control" type="time"></td>
+                        </tr>
+                        <tr>
+                            <td>Viernes</td>
+                            <td><input class="form-control" type="time"></td>
+                            <td><input class="form-control" type="time"></td>
+                          </tr>
+                          <tr>
+                              <td>Sábado</td>
+                              <td><input class="form-control" type="time"></td>
+                              <td><input class="form-control" type="time"></td>
+                            </tr>
+                </tbody>
+                </table>
+                  
+
+          </div>
+       
+
+        </div>
+      </div>
+  </div>
+  <div class="row">
+ 
+      <div class="col">
+        <br>
+          <button type="button" class="btn btn-outline-primary btn-block " (click)="guardar();">Guardar</button>
+          <br>
+          <br>
+        </div>
+     
+  </div>
+</div>

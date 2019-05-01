@@ -1,0 +1,41 @@
+ <app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar" (ocultarToast)="ocultarToast($event);"></app-toast>
+<h2 class="alinear-texto color-texto margin">Grupos</h2>
+<div class="container">
+  <div class="row">
+    <br>
+    <div class="col-xs-6 col-sm-6- col-md-6  col-lg-6 col-xl-6">
+      <div class="form-group">
+        <label for="gurpo">Grupo</label>
+        <input class="form-control form-control-lg" type="text" id="grupo" name="grupo"[(ngModel)]="grupo.grupo">
+      </div>
+     <app-select-carrera  (obtenerCarreraEvent)="recibirCarrera($event)"></app-select-carrera>
+     <br>
+     <br>
+   
+    <button  type="button" [disabled]="!grupo.grupo" class="btn btn-outline-primary btn-block btn-large" (click)="agregarGrupo();">Guardar</button>
+ 
+    </div>
+    <br>
+    <div class="col-xs-6 col-sm-6- col-md-6  col-lg-6 col-xl-6">
+      <br>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Grupo</th>
+            <th scope="col">Carrera</th>
+            <!-- <th scope="col">Acción</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let grupo of grupos">
+            <td>{{grupo.grupo}}</td>
+            <td>{{grupo.carrera.nombre}}</td>
+            <!-- <td><button type="button" class="btn btn-info" (click)="editarGrupo(grupo._id)"><i class="edit"></i></button></td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+
+  </div>
+</div>

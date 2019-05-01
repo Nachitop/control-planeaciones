@@ -1,0 +1,8 @@
+<br>
+<div class="form-group">
+    <select [multiple]="multiple" name="materia" id="materia" class="form-control form-control-lg" (change)="seleccionarMateria();" [(ngModel)]="materia_id">
+      <option value="">seleccione una materia</option>
+        <option *ngFor="let materia of materias" [value]="materia._id">{{materia.clave}}-{{materia.nombre}} </option>
+      </select>
+</div>
+<br>

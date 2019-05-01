@@ -1,0 +1,6 @@
+<div class="form-group">
+  <label for="carrera">Carrera</label>
+  <select [multiple]="multiple" name="carrera" id="carrera"  class="form-control form-control-lg" (change)="seleccionarCarrera();" [(ngModel)]="carrera_id">
+    <option *ngFor="let carrera of carreras" [value]="carrera._id">{{carrera.nombre}}</option>
+  </select>
+</div>
