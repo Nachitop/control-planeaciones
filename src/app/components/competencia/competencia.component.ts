@@ -13,7 +13,9 @@ export class CompetenciaComponent implements OnInit {
   titulo:string;
   cuerpo:string;
   mostrar:boolean;
+  tipoUsuario:string="";
   constructor(public competenciaService:CompetenciaService) { 
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
     this.obtenerCompetencias();
   }
 

@@ -1,6 +1,4 @@
-
-
-
+<div *ngIf="tipoUsuario==='Coordinador'; else noPermiso">
 <div class="row">
   <div class="col-md-6">
     <app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar"
@@ -613,4 +611,10 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
   </div>
+</ng-template>
+
+</div>
+
+<ng-template #noPermiso>
+  <app-permisos></app-permisos>
 </ng-template>

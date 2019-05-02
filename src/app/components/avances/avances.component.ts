@@ -22,10 +22,10 @@ export class AvancesComponent implements OnInit {
   titulo:string;
   cuerpo:string;
   mostrar:boolean;
-  fecha:Date= new Date();
-  dia:number;
+ 
+
   usuario:Usuario= new Usuario();
-  tipoUsuario:any;
+  tipoUsuario:string;
   alumno:Alumno= new Alumno();
   horario:Horario= new Horario();
   avance:Avances= new Avances();
@@ -36,11 +36,11 @@ export class AvancesComponent implements OnInit {
   ultimoAvanceFecha:Date;
   habilitar:boolean=false;
   constructor(public alumnoService:AlumnoService,public avanceService:AvancesService, public horarioService:HorarioService, public modal:NgbModal, public peService:ProgramaestudioService) {
-    this.dia= this.fecha.getDay();
-    this.usuario= JSON.parse(localStorage.getItem("usuario"));
-    this.tipoUsuario=JSON.parse(localStorage.getItem("tipoUsuario"));
 
-    if(this.tipoUsuario.tipo=="Alumno"){
+    this.usuario= JSON.parse(localStorage.getItem("usuario"));
+    this.tipoUsuario=JSON.parse(localStorage.getItem("tipoUsuario")).tipo;
+
+    if(this.tipoUsuario==="Alumno"){
 
       this.alumnoService.getAlumno(this.usuario._id).subscribe((res)=>{
         this.alumno=res as Alumno;

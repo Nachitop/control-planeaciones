@@ -32,8 +32,6 @@ export class ProgramaestudioComponent implements OnInit {
   pe:ProgramaEstudio= new ProgramaEstudio();
   aas:AreaAcademica[]=[];
   competencias:Competencia[]=[];
-  //cont:string="";
-  //evi:string="";
   actividadesDocente:Actividad[]=[];
   actividadesEstudiante:Actividad[]=[];
   objCriterio:Criterio= new Criterio();
@@ -42,7 +40,7 @@ export class ProgramaestudioComponent implements OnInit {
   pes:ProgramaEstudio[]=[];
   cont:Contenido= new Contenido();
   evidencia2:Evidencia= new Evidencia();
-
+  tipoUsuario:string="";
 
 
 
@@ -57,6 +55,7 @@ export class ProgramaestudioComponent implements OnInit {
   }
   
   constructor(public router:Router, public materiaService:MateriaService, public aaService:AreaacademicaService, public competenciaService:CompetenciaService, public actividadService:ActividadService, public programaEstudioService:ProgramaestudioService, public modal:NgbModal) {
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
     this.obtenerMaterias();
     this.obtenerAAS();
     this.obtenerCompetencias();

@@ -11,7 +11,11 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   usuario:Usuario=new Usuario();
   existeMatricula:number;
-  constructor(public usuarioService:UsuarioService, public router:Router) { }
+  tipoUsuario:string="";
+  constructor(public usuarioService:UsuarioService, public router:Router) {
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
+    console.log(this.tipoUsuario);
+   }
 
   ngOnInit() {
   }
@@ -32,6 +36,8 @@ export class LoginComponent implements OnInit {
         console.log(res);
         window.localStorage.setItem('tipoUsuario',JSON.stringify(res));
         this.router.navigateByUrl('/');
+        window.location.reload();
+      
       },error=>console.log(error));
     },(error)=>{console.log(error)});
 };

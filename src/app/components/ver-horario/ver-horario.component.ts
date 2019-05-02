@@ -14,7 +14,9 @@ export class VerHorarioComponent implements OnInit {
   mostrar:boolean;
   horarios:Horario[]=[];
   horario:Horario= new Horario();
+  tipoUsuario:string="";
   constructor(public horarioService:HorarioService) { 
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
     this.obtenerHorarios();
   }
 

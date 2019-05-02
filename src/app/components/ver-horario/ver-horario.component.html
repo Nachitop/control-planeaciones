@@ -1,4 +1,4 @@
-
+<div *ngIf="tipoUsuario==='Coordinador'; else noPermiso">
 <app-toast  *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar"
 (ocultarToast)="ocultarToast($event);"></app-toast>
 <h2 class="alinear-texto color-texto margin">Listado de horarios</h2>
@@ -52,26 +52,6 @@
                           </tbody>
                       </table>
                 </div>
-            
-                <!-- <div class="row">
-                  <div class="col">
-                      <label class="card-text">Materia:</label>
-                  </div>
-                  <div class="col">
-                    <label class="card-text">{{ho.materia.nombre}}</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                      <label class="card-text">Profesor:</label>
-                  </div>
-                  <div class="col">
-                    <label class="card-text">
-                        {{ho.profesor.usuario.nombre}} {{ho.profesor.usuario.apellido}} 
-                    </label>
-                  </div>
-                </div> -->
-               
                
               </div>
             </div>
@@ -80,3 +60,8 @@
     </div>
   </div>
 </div>
+</div>
+
+<ng-template #noPermiso>
+  <app-permisos></app-permisos>
+</ng-template>

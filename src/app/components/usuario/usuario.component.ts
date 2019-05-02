@@ -14,8 +14,10 @@ export class UsuarioComponent implements OnInit {
   cuerpo:string;
   usuario:Usuario= new Usuario();
   usuarios:Usuario[]=[];
+  tipoUsuario:string="";
   constructor(public usuarioService:UsuarioService) {
     this.getUsuarios();
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
     console.log(this.usuario);
    }
 

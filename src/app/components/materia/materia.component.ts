@@ -17,8 +17,9 @@ export class MateriaComponent implements OnInit {
   cuerpo:string;
   mostrar:boolean;
   multiple:boolean=true;
+  tipoUsuario:string="";
   constructor(public materiaService:MateriaService) { 
-
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
     this.obtenerMaterias();
   
   }

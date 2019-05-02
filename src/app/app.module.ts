@@ -36,6 +36,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TreeviewModule } from 'ngx-treeview';
 import { ProgramaestudiopdfComponent } from './components/programaestudiopdf/programaestudiopdf.component';
 import { AvancesComponent } from './components/avances/avances.component';
+import { PermisosComponent } from './components/permisos/permisos.component';
 
 const routes:Routes=[
   {path:'login',component:LoginComponent},
@@ -81,7 +82,8 @@ const routes:Routes=[
     ProgramaestudioComponent,
     ActividadComponent,
     ProgramaestudiopdfComponent,
-    AvancesComponent
+    AvancesComponent,
+    PermisosComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}), HttpClientModule,FormsModule,NgbModule, TreeviewModule.forRoot()

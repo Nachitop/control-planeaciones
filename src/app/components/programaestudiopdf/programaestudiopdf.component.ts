@@ -13,7 +13,9 @@ import html2canvas from 'html2canvas';
 })
 export class ProgramaestudiopdfComponent implements OnInit {
   programa:ProgramaEstudio= new ProgramaEstudio;
+  tipoUsuario:string="";
   constructor(public activatedRoute:ActivatedRoute, public programaService:ProgramaestudioService ) {
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
     this.activatedRoute.params.subscribe((param)=>{
       this.programa._id= param['_id'];
       this.programaService.get(this.programa._id).subscribe((res:ProgramaEstudio)=>{

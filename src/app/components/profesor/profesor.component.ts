@@ -14,8 +14,10 @@ export class ProfesorComponent implements OnInit {
   titulo:string;
   cuerpo:string;
   mostrar:boolean;
+  tipoUsuario:string="";
   constructor(public profesorService:ProfesorService) {
     this.obtenerProfesores();
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
    }
 
   ngOnInit() {
@@ -28,18 +30,10 @@ export class ProfesorComponent implements OnInit {
     });
   }
 
-  // obtenerPlan($event){
-  //   this.profesor.plan=$event;
-  // }
-  // obtenerGrupo($event){
-  //   this.profesor.grupo=$event;
-  //   console.log($event);
-  // }
 
   guardar(){
   
-    // if(!this.profesor.usuario._id){
-    //   console.log("entre crear");
+
       this.profesorService.createProfesor(this.profesor).subscribe(res=>{
         let res2= JSON.parse(JSON.stringify(res));
           this.mostrarToast("Exito",res2.message);
@@ -48,24 +42,11 @@ export class ProfesorComponent implements OnInit {
       },error=>{
         this.mostrarToast("Error",error.message);
       });
-    // }else{
-    //   console.log("entre update");
-    //   this.profesorService.updateProfesor(this.profesor).subscribe((res)=>
-    //   {
-    //     let res2= JSON.parse(JSON.stringify(res));
-    //       this.mostrarToast("Exito",res2.message);
-    //       this.obtenerProfesores();
-    //       this.profesor= new Profesor();
-    //   },error=>{
-    //     this.mostrarToast("Error",error.message);
-    //   })
-    // }
+
    
   }
 
     eliminar(profesor:Profesor){
-  //    this.profesor=profesor;
-
       this.profesorService.deleteProfesor(profesor._id).subscribe((res)=>{
         let res2= JSON.parse(JSON.stringify(res));
         this.mostrarToast("Exito",res2.message);

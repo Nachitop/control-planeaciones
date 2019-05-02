@@ -14,7 +14,10 @@ export class VerplaneacionesComponent implements OnInit {
   titulo:string;
   cuerpo:string;
   mostrar:boolean;
-  constructor(public planService:PlanService, public router:Router) { }
+  tipoUsuario:string="";
+  constructor(public planService:PlanService, public router:Router) { 
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
+  }
 
   ngOnInit() {
   }

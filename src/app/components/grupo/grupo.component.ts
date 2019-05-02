@@ -13,8 +13,9 @@ export class GrupoComponent implements OnInit {
   cuerpo:string;
   mostrar:boolean;
   grupos:Grupo[]=[];
+  tipoUsuario:string="";
   constructor(public grupoService:GrupoService) {
-  
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
     this.obtenerGrupos();
    }
 

@@ -13,10 +13,12 @@ export class AreaacademicaComponent implements OnInit {
   titulo:string;
   cuerpo:string;
   mostrar:boolean;
-
+  tipoUsuario:string="";
 
  
-  constructor(public aasService:AreaacademicaService) { }
+  constructor(public aasService:AreaacademicaService) { 
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
+  }
 
   ngOnInit() {
     this.obtenerAAS();

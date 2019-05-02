@@ -1,11 +1,11 @@
-
+<div *ngIf="tipoUsuario==='Alumno'; else noPermiso">
 <div class="row">
     <div class="col-md-6">
       <app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar"
         (ocultarToast)="ocultarToast($event);"></app-toast>
     </div>
   </div>
-<div class="container" *ngIf="dia==5 && habilitar && tipoUsuario.tipo==='Alumno'; else noMostrar">
+<div class="container">
   <br> 
 
       <div class="row justify-content-center align-items-center contorno">
@@ -136,20 +136,6 @@
               </div>
             </div>
             
-              <!-- <div class="panel panel-primary" id="result_panel">
-                  <div class="panel-heading">
-                    <h6 class="panel-title">Unidades</h6>
-                  </div>
-                  <div class="panel-body" >
-                    <ul class="list-group">
-                      <li class="list-group-item" >{{u.unidad}}
-                        <button type="button" (click)="mCompetencia(competencia,'eliminar');"
-                          style="font-size:5px; padding: 1px;" class="btn btn-danger rounded-circle"><i
-                            class="material-icons">remove</i></button>
-                      </li>
-                    </ul>
-                  </div>
-                </div> -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
@@ -157,8 +143,9 @@
         </ng-template>
 
 
+      </div>
 
+      <ng-template #noPermiso>
+        <app-permisos></app-permisos>
+      </ng-template>
 
-<ng-template #noMostrar>
-  <h1>Control de asistencia y avances programáticos no disponible hasta la siguiente semana!</h1>
-</ng-template>

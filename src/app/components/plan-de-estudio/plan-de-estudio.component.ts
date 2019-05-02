@@ -19,8 +19,10 @@ export class PlanDeEstudioComponent implements OnInit {
   cantidad:number;
  estructura:any[]=[];
 
-
-  constructor(public planService:PlanService) { }
+ tipoUsuario:string="";
+  constructor(public planService:PlanService) { 
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
+  }
 
   ngOnInit() {
   }

@@ -16,7 +16,7 @@ box-shadow: 0 2px 4px #346EA8,0 3px 10px 0 #346EA8 !important;">
       <li class="nav-item active">
         <a class="nav-link" href="#" style="color:#346EA8 !important">Inicio<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" *ngIf="tipoUsuario==='Coordinador'">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#346EA8 !important">
           ABC's
         </a>
@@ -37,7 +37,7 @@ box-shadow: 0 2px 4px #346EA8,0 3px 10px 0 #346EA8 !important;">
         
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" *ngIf="tipoUsuario==='Coordinador'">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#346EA8 !important">
           Programa de estudio
         </a>
@@ -50,16 +50,19 @@ box-shadow: 0 2px 4px #346EA8,0 3px 10px 0 #346EA8 !important;">
           <a class="dropdown-item" routerLink="programa-estudio">Programa de estudio</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" *ngIf="tipoUsuario==='Coordinador'">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#346EA8 !important">
           Control de asistencia y avances programáticos
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="avances">Avances</a>
+          <a class="dropdown-item" >Todos los avances</a>
           <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
+      </li>
+      <li class="nav-item active" *ngIf="tipoUsuario==='Alumno'">
+        <a class="nav-link" routerLink="avances" style="color:#346EA8 !important">Evaluar profesores</a>
       </li>
   
     </ul>
@@ -70,9 +73,9 @@ box-shadow: 0 2px 4px #346EA8,0 3px 10px 0 #346EA8 !important;">
                   <i class="material-icons">person </i>
               </a>
               <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" routerLink="login">Ingresar</a>
+                <a class="dropdown-item" routerLink="login" *ngIf="tipoUsuario===''">Ingresar</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" (click)="salir();" *ngIf="tipoUsuario!=''">Salir</a>
               </div>
             </li>
       </ul>

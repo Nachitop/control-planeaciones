@@ -22,7 +22,9 @@ export class HorarioComponent implements OnInit {
   forma:string="";
   materias:any[]=[];
   profesores:Profesor[]=[];
+  tipoUsuario:string="";
   constructor(public planService:PlanService, public profesorService:ProfesorService, public horarioService: HorarioService) {
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
     this.profesorService.getProfesores().subscribe((res:Profesor[])=>{
       this.profesores=res;
       console.log(this.profesores)

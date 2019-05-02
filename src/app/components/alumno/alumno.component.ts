@@ -14,7 +14,10 @@ export class AlumnoComponent implements OnInit {
   multiple:boolean=false;
   alumno:Alumno= new Alumno();
   alumnos:Alumno[]=[];
-  constructor(public alumnoService:AlumnoService) { this.getAlumnos(); }
+  tipoUsuario:string="";
+  constructor(public alumnoService:AlumnoService) { this.getAlumnos(); 
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
+  }
 
   ngOnInit() {
     

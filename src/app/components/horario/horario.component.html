@@ -1,3 +1,4 @@
+<div *ngIf="tipoUsuario==='Coordinador'; else noPermiso">
 <div class="row">
     <div class="col">
         <app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar" (ocultarToast)="ocultarToastEvent($event);"></app-toast>
@@ -104,3 +105,8 @@
      
   </div>
 </div>
+</div>
+
+<ng-template #noPermiso>
+  <app-permisos></app-permisos>
+</ng-template>

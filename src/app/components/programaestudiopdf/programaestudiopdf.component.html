@@ -1,3 +1,4 @@
+<div *ngIf="tipoUsuario==='Coordinador'; else noPermiso">
 <br>
 <div class="row justify-content-center align-items-center">
   <button type="button" class="btn btn-danger" (click)="convertirPDF();">CONVERTIR A PDF</button>
@@ -350,4 +351,8 @@
   </div>
   
 
+</div>
 
+<ng-template #noPermiso>
+  <app-permisos></app-permisos>
+</ng-template>

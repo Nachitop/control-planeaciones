@@ -14,8 +14,9 @@ export class ActividadComponent implements OnInit {
 
   actividad:Actividad= new Actividad();
   actividades:Actividad[]=[];
-
+  tipoUsuario:string="";
   constructor(public actividadService:ActividadService) {
+    this.tipoUsuario=JSON.parse(localStorage.getItem('tipoUsuario')).tipo;
     this.obtenerActividades();
    }
 
