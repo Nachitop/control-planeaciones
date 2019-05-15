@@ -20,4 +20,13 @@ export class AvancesService {
   getFechaAvance(_idAlumno:string,_idGrupo:string){
     return this.http.get(this.conexion.servidor+this.url_api+"/fecha/"+_idAlumno+"/"+_idGrupo);
   }
+
+
+  obtenerSemanaHechaPorSemestre(_idGrupo:string, _idAlumno:string){
+    return this.http.get(this.conexion.servidor+this.url_api+"/semanas/"+_idGrupo+"/"+_idAlumno);
+  }
+
+  obtenerAvances(_idSemana:string,_idGrupo:string){
+    return this.http.get(this.conexion.servidor+this.url_api+"/"+_idSemana+"/"+_idGrupo);
+  }
 }

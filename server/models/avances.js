@@ -10,7 +10,14 @@ const AvancesSchema= new Schema({
         dias:[],
         temas:[]
     }],
-    fecha:{type:Date,required:true}
+    fecha:{type:String,required:true},
+    semana:{type:Schema.Types.ObjectId,ref:'Semana'}
+    // semana:{
+    //     nombre:{type:String,required:true},
+    //     semestre:{type:String,required:true},
+    //     inicio:{type:String,required:true},
+    //     fin:{type:String,required:true}
+    // }
 });
 
 module.exports=mongoose.model('Avances', AvancesSchema)

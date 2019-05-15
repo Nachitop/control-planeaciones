@@ -5,9 +5,30 @@
         (ocultarToast)="ocultarToast($event);"></app-toast>
     </div>
   </div>
+
 <div class="container">
   <br> 
+  <div class="row" *ngIf="semanas.length>0">
+   
+          <label for="semana">Semana</label>
+          <select  class="form-control form-control-lg"  [(ngModel)]="_idSemana" (change)="mostrarSemana();">
+            <option *ngFor="let semana of semanas" [value]="semana._id" >{{semana.nombre}}-{{semana.semestre}}</option>
+          </select>
+    
+  </div>
 
+    <br>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <label><strong>Semestre:</strong> {{avance.semana.semestre}}</label>
+      </div>
+      <div class="col-md-6">
+          <label><strong>Inicio:</strong> {{avance.semana.inicio}}</label>
+          <label style="float:right;"><strong>Fin:</strong> {{avance.semana.fin}}</label>
+        </div>
+    </div>
       <div class="row justify-content-center align-items-center contorno">
           <h5>Grupo: {{horario.grupo.grupo}}-{{horario.grupo.carrera.nombre}}</h5>
         </div>
@@ -76,7 +97,7 @@
           </div>
           <br>
           <br>
-          <button type="button" class="btn btn-primary btn-block" (click)="enviar();">Enviar</button> 
+          <button type="button" class="btn btn-primary btn-block" (click)="enviar();" [disabled]="semanas.length==0 || _idSemana==''">Enviar</button> 
      
      
       </div>

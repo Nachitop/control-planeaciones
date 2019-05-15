@@ -1,0 +1,101 @@
+<div *ngIf="tipoUsuario==='Coordinador'; else noPermiso">
+<br>
+<br>
+<h2 class="color-texto alinear-texto">Reportes SEMANAL</h2>
+<br>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+
+        <label for="semestre">Semestre-semana</label>
+        <select class="form-control form-control-lg" id="semestre" name="semestre" [(ngModel)]="sem._id">
+            <option *ngFor="let semana of semanas" [value]="semana._id">{{semana.semestre}}-{{semana.nombre}}</option>
+        </select>
+
+        <br>
+        <br>
+        <label for="grupo">Grupo</label>
+        <select class="form-control form-control-lg" id="grupo" name="grupo" [(ngModel)]="gr._id">
+       
+          <option  *ngFor="let grupo of grupos2" [value]="grupo._id">{{grupo.grupo}}-{{grupo.carrera.nombre}}</option>
+          
+        </select>
+        <br>
+        <br>
+        <button class="btn btn-outline-primary btn-lg btn-block" (click)="obtenerAvances();">Aceptar</button>
+
+      </div>
+      <br>
+      <br>
+      <div class="row">
+        <div class="card" style="width:100%" *ngFor="let avance of avances">  
+          <div class="card-body">
+            <h3 class="card-title">Avance programático {{avance.grupo.grupo}}-{{avance.grupo.carrera.nombre}}</h3>
+            <br>
+            <h4 class="card-subtitle">Hecho por: {{avance.alumno.nombre}} {{avance.alumno.apellido}} con matrícula: {{avance.alumno.matricula}}</h4>
+            <br>
+            <h5>Fecha de realización: <strong><label>{{avance.fecha}}</label></strong></h5>
+            <br>
+            <h5> Fecha que comprende: <strong><label>{{avance.semana.inicio}}-{{avance.semana.fin}}</label></strong></h5>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Profesor</th>
+                      <th>Materia</th>
+                      <th>Temas vistos</th>
+                      <th>Asistencias</th>
+                      <th>T.TV</th>
+                      <th>T.A</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let p of avance.programatico">
+                        <td>{{p.profesor.usuario.nombre}} {{p.profesor.usuario.apellido}}</td>
+                        <td>{{p.materia.nombre}}</td>
+                        <td>
+                                <ul >
+                                  <div class="row">
+                                      <li *ngFor="let tema of p.temas" class="col-md-6 col-xs-12 col-sm-12">{{tema}}</li>
+                                  </div>
+                                </ul>
+                            
+                        </td>
+
+                        <td>
+                            <ul >
+                                <div class="row">
+                                    <li *ngFor="let dia of p.dias" class="col-md-6 col-xs-12 col-sm-12">{{dia}}</li>
+                                </div>
+                              </ul>
+                        </td>
+                        <td>
+                          {{p.temas.length}}
+                        </td>
+                        <td>
+                            {{p.dias.length}}
+                          </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<ng-template #noPermiso>
+    <app-permisos></app-permisos>
+  </ng-template>

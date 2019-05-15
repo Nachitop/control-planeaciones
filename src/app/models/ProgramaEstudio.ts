@@ -22,10 +22,8 @@ export class ProgramaEstudio{
         elaboracion:Responsable= new Responsable(),
         actividadesDocente:Actividad[]=[],
         actividadesEstudiante:Actividad[]=[],
-        //contenidos:String[]=[],
         contenidos:Contenido[]=[],
         evidencias:Evidencia[]=[],
-        //criterios:Criterio[]=[],
         bibliografias:Bibliografia[]=[],
         perfil:String=""
     ){
@@ -42,7 +40,6 @@ export class ProgramaEstudio{
         this.actividadesEstudiante=actividadesEstudiante;
         this.contenidos=contenidos;
         this.evidencias=evidencias;
-       // this.criterios=criterios
         this.bibliografias=bibliografias;
         this.perfil=perfil;
 
@@ -58,11 +55,9 @@ export class ProgramaEstudio{
     elaboracion:Responsable;
     actualizacion:Responsable;
     contenidos:Contenido[];
-    //contenidos:String[];
     actividadesDocente:Actividad[];
     actividadesEstudiante:Actividad[];
     evidencias:Evidencia[];
-    //criterios:Criterio[];
     bibliografias:Bibliografia[];
     perfil:String;
 }

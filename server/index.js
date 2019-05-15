@@ -25,6 +25,7 @@ app.use('/api/competencia',require('./routes/competencia.route'));
 app.use('/api/actividad',require('./routes/actividad.route'));
 app.use('/api/pe',require('./routes/programaEstudio.route'));
 app.use('/api/avances',require('./routes/avances.route'));
+app.use('/api/semana', require('./routes/semana.route'));
 //Startin' server
 app.listen(app.get('port'),()=>{
     console.log("server on port",app.get('port'));

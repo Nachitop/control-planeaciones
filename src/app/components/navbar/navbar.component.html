@@ -30,6 +30,7 @@ box-shadow: 0 2px 4px #346EA8,0 3px 10px 0 #346EA8 !important;">
         
           <a class="dropdown-item" routerLink="plan">Plan de estudio</a>
           <a class="dropdown-item" routerLink="horario">Horarios</a>
+          <a class="dropdown-item" routerLink="semanas">Semanas</a>
          
           
          
@@ -50,16 +51,10 @@ box-shadow: 0 2px 4px #346EA8,0 3px 10px 0 #346EA8 !important;">
           <a class="dropdown-item" routerLink="programa-estudio">Programa de estudio</a>
         </div>
       </li>
-      <li class="nav-item dropdown" *ngIf="tipoUsuario==='Coordinador'">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#346EA8 !important">
+      <li class="nav-item active" *ngIf="tipoUsuario==='Coordinador'">
+        <a class="nav-link" routerLink="reportes" style="color:#346EA8 !important">
           Control de asistencia y avances programáticos
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" >Todos los avances</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
       </li>
       <li class="nav-item active" *ngIf="tipoUsuario==='Alumno'">
         <a class="nav-link" routerLink="avances" style="color:#346EA8 !important">Evaluar profesores</a>

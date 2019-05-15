@@ -9,7 +9,7 @@ horarioCtrl.create= async(req,res)=>{
         horario: req.body.horario,
         fecha: new Date(),
     });
-    console.log(horario);
+
  
     await horario.save();
     res.status(200).json({message:"Horario creado con exito!"});
@@ -96,7 +96,7 @@ horarioCtrl.deleteHorario=async(req,res)=>{
 
 horarioCtrl.getHorarioPorAlumnoGrupo=async(req,res)=>{
     try {
-        const horario=await Horario.findOne({grupo:req.params._idGrupo},{plan:0}).sort({_id:-1}).populate({
+        const horario=await Horario.findOne({grupo:req.params._idGrupo},{plan:1}).sort({_id:-1}).populate({
             path:'grupo',
             model:'Grupo',
             populate:{
@@ -115,7 +115,9 @@ horarioCtrl.getHorarioPorAlumnoGrupo=async(req,res)=>{
             path:'horario.materia',
             model:'Materia',
             select:{'horas':0,'clave':0}
-        });
+        }).populate(
+        'plan');
+      
         if(horario!=undefined && horario!=null){
             res.status(200).json(horario);
         }else{

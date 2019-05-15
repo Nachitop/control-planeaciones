@@ -37,6 +37,8 @@ import { TreeviewModule } from 'ngx-treeview';
 import { ProgramaestudiopdfComponent } from './components/programaestudiopdf/programaestudiopdf.component';
 import { AvancesComponent } from './components/avances/avances.component';
 import { PermisosComponent } from './components/permisos/permisos.component';
+import { SemanasComponent } from './components/semanas/semanas.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 
 const routes:Routes=[
   {path:'login',component:LoginComponent},
@@ -54,7 +56,9 @@ const routes:Routes=[
   {path:'programa-estudio',component:ProgramaestudioComponent},
   {path:'programa-estudio-pdf',component:ProgramaestudiopdfComponent},
   {path:'actividad',component:ActividadComponent},
-  {path:'avances',component:AvancesComponent}
+  {path:'avances',component:AvancesComponent},
+  {path:'semanas',component:SemanasComponent},
+  {path:'reportes',component:ReportesComponent},
 ];
 @NgModule({
   declarations: [
@@ -83,7 +87,9 @@ const routes:Routes=[
     ActividadComponent,
     ProgramaestudiopdfComponent,
     AvancesComponent,
-    PermisosComponent
+    PermisosComponent,
+    SemanasComponent,
+    ReportesComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}), HttpClientModule,FormsModule,NgbModule, TreeviewModule.forRoot()

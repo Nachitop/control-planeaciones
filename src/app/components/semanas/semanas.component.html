@@ -1,0 +1,82 @@
+<div *ngIf="tipoUsuario==='Coordinador'; else noPermiso">
+    <div class="row">
+      <div class="col-md-6">
+        <app-toast *ngIf="mostrar" [titulo]="titulo" [cuerpo]="cuerpo" [mostrar]="mostrar"
+        (ocultarToast)="ocultarToast($event);"></app-toast>
+      </div>
+    </div>
+    <br>
+    <h2 class="color-texto alinear-texto margin">Semanas</h2>
+    <br>
+    <br>
+    <div class="container">
+      <div class="row ">
+  
+         
+          <div class="col-md-6">
+      
+              <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" [(ngModel)]="semana.nombre">
+                  <br>
+                <label for="semestre">Semestre</label>
+                <select class="form-control form-control-lg" id="semestre" name="semestre" [(ngModel)]="semana.semestre" >
+                  <option  value="Semestre 1">Semestre 1</option>
+                  <option  value="Semestre 2">Semestre 2</option>
+                  <option  value="Semestre 3">Semestre 3</option>
+                  <option  value="Semestre 4">Semestre 4</option>
+                  <option  value="Semestre 5">Semestre 5</option>
+                  <option  value="Semestre 6">Semestre 6</option>
+                  <option  value="Semestre 7">Semestre 7</option>
+                  <option  value="Semestre 8">Semestre 8</option>
+                  <option  value="Semestre 9">Semestre 9</option>
+                </select>
+                <br>
+                <label for="inicio">Inicio</label>
+                <input type="date" class="form-control form-control-lg" id="inicio" name="inicio" [(ngModel)]="semana.inicio">
+                <br>
+                <label for="fin">Fin</label>
+                <input type="date" class="form-control form-control-lg" id="fin" name="fin" [(ngModel)]="semana.fin">
+                <br>
+                <button class="btn btn-outline-success btn-lg btn-block" (click)="guardar();">Guardar</button>
+
+              </div>
+          
+          
+          
+          </div>
+          <div class="col-md-6">
+         
+         
+                <div *ngIf="semanas.length>0" >
+                
+                <div class="card" *ngFor="let sem of semanas">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-8">
+                          {{sem.semestre}}, {{sem.nombre}}, {{sem.inicio }},{{sem.fin }}
+                        </div>
+                        <div class="col-md-4">
+                          <button  type="button" class="btn btn-warning btn-lg" (click)="editarSemana(sem);"><i class="material-icons">edit</i></button>
+                          <button style=" margin-left: 5px;" type="button" class="btn btn-danger btn-lg" (click)="eliminarSemana(sem._id);"><i class="material-icons">delete</i></button>
+                        </div>
+                     
+                        </div>
+                    </div>
+                  </div>
+                  </div>
+                
+       
+          
+         
+          </div>
+      </div>
+      <br>
+
+    </div>
+
+
+</div>
+<ng-template #noPermiso>
+  <app-permisos></app-permisos>
+</ng-template>
